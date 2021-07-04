@@ -1,0 +1,52 @@
+html {scroll-behavior: smooth;}
+
+.container
+{
+    min-height: 800px;
+}
+
+.col-auto
+{
+    position: absolute;
+    top: 80%;
+}
+
+.navbar-brand
+{
+    font-weight: bold;
+}
+
+.scroll-down {
+  border-radius: 30px;
+  margin-left: 15px;
+  margin-right: 10px;
+  background-color: #ffc40c;   /* Yellow */
+  border: none;
+  outline: 0;
+  display: inline-block;
+  color: black;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 22px;
+}
+
+button {
+  border-radius: 5px;
+  margin-left: 15px;
+  margin-right: 10px;
+  background-color: #ffc40c;   /* Yellow */
+  border: none;
+  outline: 0;
+  display: inline-block;
+  color: black;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 22px;
+}
+
+.navbar-nav > li{
+  padding-left:15px;
+  padding-right:15px;
+}
