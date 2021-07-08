@@ -1,16 +1,13 @@
-from flask import Flask
+from flask import Flask, request, render_template
 from dotenv import load_dotenv
+from . import db
+
+import os
 
 load_dotenv()
 app = Flask(__name__)
-
-from app import routes
-
-# app.add_url_rule('/', view_func=views.index)
-# app.add_url_rule('/about', view_func=views.about)
-# app.add_url_rule('/blog', view_func=views.blog)
-# app.add_url_rule('/portfolio', view_func=views.portfolio)
-# app.add_url_rule('/cv', view_func=views.cv)
+app.config['DATABASE'] = os.path.join(os.getcwd(), 'flask.sqlite')
+db.init_app(app)
 
 if (__name__ == "__main__"):
     app.run(debug=True)
