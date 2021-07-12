@@ -2,10 +2,14 @@ from app import app
 from flask import render_template, send_from_directory
 from flask import jsonify
 
+<<<<<<< HEAD
 from werkzeug.security import check_password_hash, generate_password_hash
 from app.db import get_db
 import os
 
+=======
+import os
+>>>>>>> 520bb1252922f982390bbc7b285f352e2f422d90
 
 @app.route('/index', methods=['POST', 'GET'])
 @app.route('/', methods=['POST', 'GET'])
@@ -87,6 +91,7 @@ def login():
     
     ## TODO: Return a login page
     return "Login Page not yet implemented", 501
+
 
 
 

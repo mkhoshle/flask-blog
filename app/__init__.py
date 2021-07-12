@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 
 from flask import render_template, send_from_directory, Flask, request
 from flask import jsonify
 
 from werkzeug.security import check_password_hash, generate_password_hash
 from app.db import get_db
+=======
+# import os
+# from flask import render_template, send_from_directory
+# from flask import jsonify
+
+from flask import Flask, request, render_template
+>>>>>>> 520bb1252922f982390bbc7b285f352e2f422d90
 from dotenv import load_dotenv
 
 from . import db
@@ -42,6 +50,7 @@ def health():
     resp.status_code = 200
     return resp
 
+<<<<<<< HEAD
 @app.route('/register', methods=['GET','POST'])
 def register():
     if request.method == 'POST':
@@ -95,6 +104,8 @@ def login():
     
     ## TODO: Return a login page
     return "Login Page not yet implemented", 501
+=======
+>>>>>>> 520bb1252922f982390bbc7b285f352e2f422d90
 
 if (__name__ == "__main__"):
-    app.run(debug=True)
+    app.run()

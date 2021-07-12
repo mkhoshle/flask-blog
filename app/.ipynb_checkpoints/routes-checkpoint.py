@@ -1,8 +1,8 @@
-import os
+from app import app
 from flask import render_template, send_from_directory
 from flask import jsonify
 
-from app import app
+import os
 
 @app.route('/index', methods=['POST', 'GET'])
 @app.route('/', methods=['POST', 'GET'])
@@ -30,6 +30,7 @@ def health():
     resp = jsonify(success=True)
     resp.status_code = 200
     return resp
+
 
 
 
