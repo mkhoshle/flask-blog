@@ -1,16 +1,44 @@
 from flask import render_template, send_from_directory, Flask, request
 from flask import jsonify
 from werkzeug.security import check_password_hash, generate_password_hash
-from app.db import get_db
 
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from dotenv import load_dotenv
-from . import db
+
+# from app.db import get_db
+# from . import db
 import os
 
 load_dotenv()
 app = Flask(__name__)
-app.config['DATABASE'] = os.path.join(os.getcwd(), 'flask.sqlite')
-db.init_app(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://{user}:{passwd}@{host}:{port}/{table}'.format(
+    user=os.getenv('POSTGRES_USER'),
+    passwd=os.getenv('POSTGRES_PASSWORD'),
+    host=os.getenv('POSTGRES_HOST'),
+    port=5432,
+    table=os.getenv('POSTGRES_DB'))
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# app.config['DATABASE'] = os.path.join(os.getcwd(), 'flask.sqlite')
+# db.init_app(app)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
+class UserModel(db.Model):
+    __tablename__ = 'users'
+
+    username = db.Column(db.String(), primary_key=True)
+    password = db.Column(db.String())
+
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+
+    def __repr__(self):
+        return f"<User {self.username}>"
+
 
 @app.route('/index', methods=['POST', 'GET'])
 @app.route('/', methods=['POST', 'GET'])
