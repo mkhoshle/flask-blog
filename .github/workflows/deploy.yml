@@ -35,8 +35,7 @@ jobs:
 
       - name: Test Routes
         uses: actions/checkout@v2
-        shell: bash
-        run: ./prod-test.sh
+        run: bash ./prod-test.sh
 
       - name: Deployment Notify
         run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
