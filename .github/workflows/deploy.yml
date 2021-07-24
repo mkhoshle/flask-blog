@@ -31,4 +31,16 @@ jobs:
           SSH_IP: ${{ secrets.SSH_IP }}
 
       - name: Deploy site
-        run: ssh my-vm "cd ${{ secrets.PROJECT_ROOT }} && git fetch && git reset --hard origin/main && docker-compose up -d --build "
+        run: ssh my-vm "cd ${{ secrets.PROJECT_ROOT }} && git fetch && git reset --hard origin/main && docker-compose up -d --build && docker-compose ps"
+
+      - name: Deployment Notify
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
+
+      - name: Test Routes
+        use: actions/checkout@v2
+        run: bash prod-test.sh
+
+       -name: My backup step
+        if: ${{ failure() }}
+        use: actions/checkout@v2
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚨 Deployment Failed"
