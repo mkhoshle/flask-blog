@@ -37,10 +37,10 @@ jobs:
         run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
 
       - name: Test Routes
-        use: actions/checkout@v2
+        uses: actions/checkout@v2
         run: bash prod-test.sh
 
        -name: My backup step
         if: ${{ failure() }}
-        use: actions/checkout@v2
+        uses: actions/checkout@v2
         run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚨 Deployment Failed"
