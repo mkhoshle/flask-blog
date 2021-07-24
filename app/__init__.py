@@ -97,29 +97,29 @@ def register():
     ## TODO: Return a restister page
     return "Register Page not yet implemented", 501
 
-#@app.route('/login', methods=['GET','POST'])
-#def login():
-#    if request.method == 'POST':
-#        username = request.form.get('username')
-#        password = request.form.get('password')
-#        db = get_db()
-#        error = None
-#        user = db.execute(
-#            'SELECT * FROM user WHERE username = ?', (username,)
-#        ).fetchone()
+@app.route('/login', methods=['GET','POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        db = get_db()
+        error = None
+        user = db.execute(
+            'SELECT * FROM user WHERE username = ?', (username,)
+        ).fetchone()
 
-#        if user is None:
-#            error = 'Incorrect username.'
-#        elif not check_password_hash(user['password'], password):
-#            error = 'Incorrect password.'
-#
-#        if error is None:
-#            return "Login Successful", 200 
-#        else:
-#            return error, 418
+        if user is None:
+            error = 'Incorrect username.'
+        elif not check_password_hash(user['password'], password):
+            error = 'Incorrect password.'
+
+        if error is None:
+            return "Login Successful", 200 
+        else:
+            return error, 418
     
     ## TODO: Return a login page
-#    return "Login Page not yet implemented", 501
+    return "Login Page not yet implemented", 501
 
 if (__name__ == "__main__"):
     app.run()
