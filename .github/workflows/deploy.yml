@@ -38,7 +38,8 @@ jobs:
 
       - name: Test Routes
         uses: actions/checkout@v2
-        run: bash prod-test.sh
+        run: ./prod-test.sh
+        shell: bash
 
        -name: My backup step
         if: ${{ failure() }}
