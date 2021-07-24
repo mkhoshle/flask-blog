@@ -32,8 +32,8 @@ jobs:
 
       - name: Test Routes
         uses: actions/checkout@v2
-        run: ./prod-test.sh
         shell: bash
+        run: ./prod-test.sh
 
       - name: Deploy site
         run: ssh my-vm "cd ${{ secrets.PROJECT_ROOT }} && git fetch && git reset --hard origin/main && docker-compose up -d --build && docker-compose ps"
