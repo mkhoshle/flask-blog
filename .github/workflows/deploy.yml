@@ -31,10 +31,12 @@ jobs:
           SSH_IP: ${{ secrets.SSH_IP }}
 
       - name: Deploy site
-        run: ssh my-vm "cd ${{ secrets.PROJECT_ROOT }} && git fetch && git reset --hard origin/main && docker-compose up -d --build && docker-compose ps"
+        run: ssh my-vm "cd ${{ secrets.PROJECT_ROOT }} && git fetch && git reset --hard origin/main && docker-compose down && docker-compose up -d --build && docker-compose ps"
+
+      - name: Checkout
+        uses: actions/checkout@v2
 
       - name: Test Routes
-        uses: actions/checkout@v2
         run: bash ./prod-test.sh
 
       - name: Deployment Notify
